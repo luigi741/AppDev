@@ -5,13 +5,15 @@
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
     <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
 </head>
 
 <body>
     <ons-toolbar>
-        <div class="center">Inventory</div>
+        <h4 class="center" font-family="Noto Sans; sans-serif">Home</h4>
         <div class="right">
             <ons-toolbar-button>
                 <ons-icon icon="ion-navicon, material:md-more-vert"></ons-icon>
@@ -23,7 +25,7 @@
             <ons-row>
                 <ons-col class="center">
                     <ons-toolbar-button>
-                        <ons-icon size="30px" icon="ion-home"></ons-icon>
+                        <ons-icon size="30px" icon="ion-home" onclick="buttonClick()"></ons-icon>
                     </ons-toolbar-button>
                 </ons-col>
                 <ons-col class="center">

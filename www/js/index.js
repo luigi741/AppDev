@@ -24,6 +24,10 @@ var app = {
 
         console.log('Received Event: ' + id);
     }
+
+    function buttonClick() {
+        console.log('Clicked button!');
+    }
 };
 
 app.initialize();
