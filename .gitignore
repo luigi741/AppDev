@@ -1,2 +1,4 @@
-# Ignore node_modules directory
+# Ignore directories
 /node_modules
+/platforms/android
+/platforms/browser
