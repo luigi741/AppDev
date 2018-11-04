@@ -38,4 +38,11 @@ function invPage() {
     canvas.style = '';
 }
 
+function newList() {
+    var item = {};
+    item.name = document.getElementById('listName').value;
+    item.location = document.getElementById('location').value;
+    console.log(item);
+}
+
 app.initialize();
