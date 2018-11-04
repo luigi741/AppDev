@@ -8,28 +8,40 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="cordova.js"></script>
-    <script src="js/index.js"></script>
 </head>
 
 <body>
-    <ons-toolbar>
-        <h4 class="center" font-family="Noto Sans; sans-serif">Home</h4>
-        <div class="right">
-            <ons-toolbar-button>
-                <ons-icon icon="ion-navicon, material:md-more-vert"></ons-icon>
-            </ons-toolbar-button>
+    <ons-page>
+        <ons-toolbar>
+            <h4 class="center" font-family="Noto Sans; sans-serif">Home</h4>
+            <div class="right">
+                <ons-toolbar-button>
+                    <ons-icon icon="ion-navicon, material:md-more-vert"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+        </ons-toolbar>
+        <div class='content' id='canvas' style='visibility: hidden'>
+            <div style="text-align; margin-top: 30px">
+                <p class='center'>
+                    <ons-input id="listName" modifier="underbar" placeholder="Inventory List"></ons-input>
+                </p>
+                <p class='center'>
+                    <ons-input id="location" modifier="underbar" placeholder="Location"></ons-input>
+                </p>
+                <p style="margin-top: 30px;" class='center'>
+                    <ons-button ng-click="">Create List</ons-button>
+                </p>
+            </div>
         </div>
-    </ons-toolbar>
-    <div>
         <ons-bottom-toolbar>
             <ons-row>
                 <ons-col class="center">
                     <ons-toolbar-button>
-                        <ons-icon size="30px" icon="ion-home" onclick="buttonClick()"></ons-icon>
+                        <ons-icon size="30px" icon="ion-home" onclick="dialogShow()"></ons-icon>
                     </ons-toolbar-button>
                 </ons-col>
                 <ons-col class="center">
-                    <ons-toolbar-button>
+                    <ons-toolbar-button onclick="invPage()">
                         <ons-icon size="30px" icon="ion-clipboard"></ons-icon>
                     </ons-toolbar-button>
                 </ons-col>
@@ -40,7 +52,16 @@
                 </ons-col>
             </ons-row>
         </ons-bottom-toolbar>
-    </div>
+    </ons-page>
+    <ons-alert-dialog id="dialog-1">
+        <div class="alert-dialog-title">Simple Dialog</div>
+        <br>
+        <div class="alert-dialog-footer">
+            <ons-alert-dialog-button onclick='dialogClose()'>OK</ons-alert-dialog-button>
+            <ons-alert-dialog-button onclick='dialogClose()'>Cancel</ons-alert-dialog-button>
+        </div>
+    </ons-alert-dialog>
+    <script src="js/index.js"></script>
 </body>
 
 </html>

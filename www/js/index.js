@@ -6,7 +6,6 @@ var app = {
     },
 
     // deviceready Event Handler
-    //
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
@@ -24,10 +23,19 @@ var app = {
 
         console.log('Received Event: ' + id);
     }
-
-    function buttonClick() {
-        console.log('Clicked button!');
-    }
 };
+
+function dialogShow() {
+    document.getElementById('dialog-1').show();
+}
+
+function dialogClose() {
+    document.getElementById('dialog-1').hide();
+}
+
+function invPage() {
+    var canvas = document.getElementById('canvas');
+    canvas.style = '';
+}
 
 app.initialize();
