@@ -1,8 +1,18 @@
+//===============================================================================================
+// index.js
+// This holds the main JavaScript for the Application
+// By: Luis Castro
+//===============================================================================================
+
+// Created an SQLite DB
+var db = window.sqlitePlugin.openDatabase({name: 'mySQLite.db', location: 'default'});
 
 var app = {
     // Application Constructor
     initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), function() {
+            console.log('Device ready.');
+        });
     },
 
     // deviceready Event Handler
@@ -26,7 +36,22 @@ var app = {
 };
 
 function dialogShow() {
+    // Get form values
+    var item = {};
+    item.name = document.getElementById('listName').value;
+    item.location = document.getElementById('location').value;
+
+    var list1 = document.createElement('P');
+    list1.innerHTML = item.name;
+
+    var list2 = document.createElement('P');
+    list2.innerHTML = item.location;
+
+    document.getElementById('dialogList').appendChild(list2);
+    document.getElementById('dialogList').appendChild(list1);
     document.getElementById('dialog-1').show();
+
+
 }
 
 function dialogClose() {
@@ -38,11 +63,10 @@ function invPage() {
     canvas.style = '';
 }
 
-function newList() {
-    var item = {};
-    item.name = document.getElementById('listName').value;
-    item.location = document.getElementById('location').value;
-    console.log(item);
+function homePage() {
+    var home = document.getElementById('canvas');
+    canvas.style = 'visibility: hidden';
 }
+
 
 app.initialize();

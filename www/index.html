@@ -28,7 +28,7 @@
                 <p class='center'>
                     <ons-input id="location" modifier="underbar" placeholder="Location"></ons-input>
                 </p>
-                <p style="margin-top: 30px;" class='center'>
+                <p style="margin-top: 30px;" class='center' onclick='dialogShow()'>
                     <ons-button id='newListButton' onclick="newList()">Create List</ons-button>
                 </p>
             </div>
@@ -37,7 +37,7 @@
             <ons-row>
                 <ons-col class="center">
                     <ons-toolbar-button>
-                        <ons-icon size="30px" icon="ion-home" onclick="dialogShow()"></ons-icon>
+                        <ons-icon size="30px" icon="ion-home" onclick="homePage()"></ons-icon>
                     </ons-toolbar-button>
                 </ons-col>
                 <ons-col class="center">
@@ -54,7 +54,7 @@
         </ons-bottom-toolbar>
     </ons-page>
     <ons-alert-dialog id="dialog-1">
-        <div class="alert-dialog-title">Simple Dialog</div>
+        <div class="alert-dialog-title" id="dialogList">New List:</div>
         <br>
         <div class="alert-dialog-footer">
             <ons-alert-dialog-button onclick='dialogClose()'>OK</ons-alert-dialog-button>
