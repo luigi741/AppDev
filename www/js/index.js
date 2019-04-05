@@ -6,16 +6,19 @@
 
 
 // Created an SQLite DB
-var db = window.sqlitePlugin.openDatabase({name: 'mySQLite.db', location: 'default'});
+var db = window.sqlitePlugin.openDatabase({
+    name: 'mySQLite.db',
+    location: 'default'
+});
 
 db.transaction(function(transaction) {
     transaction.executeSql('CREATE TABLE IF NOT EXISTS invList (id integer primary key, title text, desc text)', [],
-    function(tx, result) {
-        alert('Table created successfully');
-    },
-    function(error) {
-        alert('Error occurred while creating table');
-    });
+        function(tx, result) {
+            alert('Table created successfully');
+        },
+        function(error) {
+            alert('Error occurred while creating table');
+        });
 });
 
 function insertData() {
@@ -86,22 +89,21 @@ function dialogShow() {
 
 function scan() {
     cordova.plugins.barcodeScanner.scan(
-        function (result) { // result is the JSON object that holds barcode data
+        function(result) { // result is the JSON object that holds barcode data
             alert("We got a barcode\n" +
-                  "Result: " + result.text + "\n" +
-                  "Format: " + result.format + "\n" +
-                  "Cancelled: " + result.cancelled);
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
         },
-        function (error) {
+        function(error) {
             alert("Scanning failed: " + error);
         }
-     );
+    );
 }
 
 function clearForm() {
     document.getElementById('listName').value = '';
     document.getElementById('location').value = '';
-
 }
 
 function clearDialog() {
@@ -125,7 +127,5 @@ function homePage() {
     var home = document.getElementById('canvas');
     canvas.style = 'visibility: hidden';
 }
-
-
 
 app.initialize();
