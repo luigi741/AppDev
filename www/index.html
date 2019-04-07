@@ -21,7 +21,7 @@
             </div>
         </ons-toolbar>
         <div class='content' id='canvas' style='visibility: hidden'>
-            <div style="text-align; margin-top: 30px">
+            <form id='invListForm' action='http://54.198.236.52:3000/test' method='post' style="text-align; margin-top: 30px">
                 <p class='center'>
                     <ons-input id="listName" modifier="underbar" placeholder="Inventory List"></ons-input>
                 </p>
@@ -29,12 +29,12 @@
                     <ons-input id="location" modifier="underbar" placeholder="Location"></ons-input>
                 </p>
                 <p style="margin-top: 30px;" class='center'>
-                    <ons-button id='newListButton' onclick="dialogShow()">Create List</ons-button>
+                    <ons-button id='newListButton' onclick="dialogShow()" type='submit' form='invListForm'>Create List</ons-button>
                 </p>
                 <p style="margin-top: 30px;" class='center'>
-                    <ons-button id='newListButton' onclick="scan()">Camera</ons-button>
+                    <ons-button id='newScanButton' onclick="scan()">Camera</ons-button>
                 </p>
-            </div>
+            </form>
         </div>
         <ons-bottom-toolbar>
             <ons-row>
