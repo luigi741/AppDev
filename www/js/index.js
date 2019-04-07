@@ -4,36 +4,38 @@
 // By: Luis Castro
 //===============================================================================================
 
-
 // Created an SQLite DB
-var db = window.sqlitePlugin.openDatabase({name: 'mySQLite.db', location: 'default'});
-
-db.transaction(function(transaction) {
-    transaction.executeSql('CREATE TABLE IF NOT EXISTS invList (id integer primary key, title text, desc text)', [],
-    function(tx, result) {
-        alert('Table created successfully');
-    },
-    function(error) {
-        alert('Error occurred while creating table');
-    });
-});
-
-function insertData() {
-    var name = document.getElementById('dName').innerHTML;
-    var location = document.getElementById('dLocation').innerHTML;
-
-    db.transaction(function(transaction) {
-        var executeQuery = 'INSERT INTO invList (name, location) VALUE (?, ?)';
-        transaction.executeSql(executeQuery, [name, location],
-            function() {
-                alert('Inserted');
-            },
-            function(error) {
-                alert('Error occurred');
-            }
-        );
-    });
-}
+// var db = window.sqlitePlugin.openDatabase({
+//     name: 'mySQLite.db',
+//     location: 'default'
+// });
+//
+// db.transaction(function(transaction) {
+//     transaction.executeSql('CREATE TABLE IF NOT EXISTS invList (id integer primary key, title text, desc text)', [],
+//         function(tx, result) {
+//             alert('Table created successfully');
+//         },
+//         function(error) {
+//             alert('Error occurred while creating table');
+//         });
+// });
+//
+// function insertData() {
+//     var name = document.getElementById('dName').innerHTML;
+//     var location = document.getElementById('dLocation').innerHTML;
+//
+//     db.transaction(function(transaction) {
+//         var executeQuery = 'INSERT INTO invList (name, location) VALUE (?, ?)';
+//         transaction.executeSql(executeQuery, [name, location],
+//             function() {
+//                 alert('Inserted');
+//             },
+//             function(error) {
+//                 alert('Error occurred');
+//             }
+//         );
+//     });
+// }
 
 var app = {
     // Application Constructor
@@ -81,27 +83,54 @@ function dialogShow() {
     document.getElementById('dialogList').appendChild(list2);
     document.getElementById('dialog-1').show();
 
+    // Sending object 'result' to server
+    console.log(item);
+
+    // var options = {
+    //     method: 'post',
+    //     data: item
+    // };
+
+    // cordova.plugin.http.sendRequest('http://54.198.236.52:3000/test', options, function(response) {
+    //     console.log(response.status);
+    // }, function(response) {
+    //     console.log(reponse.status);
+    //     console.log(response.error);
+    // });
+
+    var HTTP = new XMLHttpRequest();
+    var URL = 'http://54.198.236.52:3000/newTest';
+    HTTP.open('POST', URL);
+    var data = JSON.stringify(item);
+    // HTTP.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    HTTP.setRequestHeader('Content-type', 'text/plain');
+    HTTP.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(HTTP.responseText);
+        }
+    };
+    HTTP.send(data);
+
     clearForm();
 }
 
 function scan() {
     cordova.plugins.barcodeScanner.scan(
-        function (result) { // result is the JSON object that holds barcode data
+        function(result) { // result is the JSON object that holds barcode data
             alert("We got a barcode\n" +
-                  "Result: " + result.text + "\n" +
-                  "Format: " + result.format + "\n" +
-                  "Cancelled: " + result.cancelled);
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
         },
-        function (error) {
+        function(error) {
             alert("Scanning failed: " + error);
         }
-     );
+    );
 }
 
 function clearForm() {
     document.getElementById('listName').value = '';
     document.getElementById('location').value = '';
-
 }
 
 function clearDialog() {
@@ -125,7 +154,5 @@ function homePage() {
     var home = document.getElementById('canvas');
     canvas.style = 'visibility: hidden';
 }
-
-
 
 app.initialize();

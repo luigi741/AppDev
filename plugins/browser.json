@@ -12,7 +12,14 @@
     },
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "com.example.inventory"
+    },
+    "cordova-plugin-http": {
+      "PACKAGE_NAME": "com.myApp.inventory"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.myApp.inventory"
+    }
+  }
 }
