@@ -4,39 +4,6 @@
 // By: Luis Castro
 //===============================================================================================
 
-// Created an SQLite DB
-// var db = window.sqlitePlugin.openDatabase({
-//     name: 'mySQLite.db',
-//     location: 'default'
-// });
-//
-// db.transaction(function(transaction) {
-//     transaction.executeSql('CREATE TABLE IF NOT EXISTS invList (id integer primary key, title text, desc text)', [],
-//         function(tx, result) {
-//             alert('Table created successfully');
-//         },
-//         function(error) {
-//             alert('Error occurred while creating table');
-//         });
-// });
-//
-// function insertData() {
-//     var name = document.getElementById('dName').innerHTML;
-//     var location = document.getElementById('dLocation').innerHTML;
-//
-//     db.transaction(function(transaction) {
-//         var executeQuery = 'INSERT INTO invList (name, location) VALUE (?, ?)';
-//         transaction.executeSql(executeQuery, [name, location],
-//             function() {
-//                 alert('Inserted');
-//             },
-//             function(error) {
-//                 alert('Error occurred');
-//             }
-//         );
-//     });
-// }
-
 var app = {
     // Application Constructor
     initialize: function() {
@@ -108,6 +75,22 @@ function scan() {
                 "Result: " + result.text + "\n" +
                 "Format: " + result.format + "\n" +
                 "Cancelled: " + result.cancelled);
+
+            // Sending UPC data to server
+            console.log(result);
+            var HTTP = new XMLHttpRequest();
+            var URL = 'http://54.198.236.52:3000/upcScan';
+            var data = JSON.stringify(result);
+
+            HTTP.open('POST', URL);
+            HTTP.setRequestHeader('Content-type', 'application/json');
+            HTTP.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(HTTP.responseText);
+                }
+            };
+            HTTP.send(data);
+
         },
         function(error) {
             alert("Scanning failed: " + error);
