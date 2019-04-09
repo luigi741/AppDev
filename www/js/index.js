@@ -85,25 +85,12 @@ function dialogShow() {
 
     // Sending object 'result' to server
     console.log(item);
-
-    // var options = {
-    //     method: 'post',
-    //     data: item
-    // };
-
-    // cordova.plugin.http.sendRequest('http://54.198.236.52:3000/test', options, function(response) {
-    //     console.log(response.status);
-    // }, function(response) {
-    //     console.log(reponse.status);
-    //     console.log(response.error);
-    // });
-
     var HTTP = new XMLHttpRequest();
-    var URL = 'http://54.198.236.52:3000/newTest';
-    HTTP.open('POST', URL);
+    var URL = 'http://54.198.236.52:3000/test';
     var data = JSON.stringify(item);
-    // HTTP.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    HTTP.setRequestHeader('Content-type', 'text/plain');
+
+    HTTP.open('POST', URL);
+    HTTP.setRequestHeader('Content-type', 'application/json');
     HTTP.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log(HTTP.responseText);
