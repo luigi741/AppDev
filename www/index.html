@@ -35,6 +35,83 @@
                     <ons-button id='newScanButton' onclick="scan()">Camera</ons-button>
                 </p>
             </form>
+            <div style="height: 200px; padding: 1px 0 0 0;">
+                <div class="card" style='height: 300px'>
+                    <h2 class="card__title">Scan List</h2>
+                    <div class="card__content">
+                        <ons-row>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center">UPC</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">Quantity</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center"></div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                        </ons-row>
+                        <ons-row>
+                            <ons-col>
+                                <ul class="list" id='scanList'>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center">Dog</div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center">Cat</div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center">Hamster</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list" id='scanQuantiy'>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">2</div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">3</div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">4</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class='list' id='listDelete'>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">
+                                            <ons-icon icon='fa-trash-alt' style='color: red'></ons-icon>
+                                        </div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">
+                                            <ons-icon icon='fa-trash-alt' style='color: red'></ons-icon>
+                                        </div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">
+                                            <ons-icon icon='fa-trash-alt' style='color: red'></ons-icon>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                        </ons-row>
+                    </div>
+                </div>
+            </div>
         </div>
         <ons-bottom-toolbar>
             <ons-row>
