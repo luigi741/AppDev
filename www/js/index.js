@@ -118,11 +118,17 @@ function dialogClose() {
 function invPage() {
     var canvas = document.getElementById('canvas');
     canvas.style = '';
+
+    // var home = document.getElementById('homeScreen');
+    // home.style = 'visibility: hidden';
 }
 
 function homePage() {
     var home = document.getElementById('canvas');
     canvas.style = 'visibility: hidden';
+
+    // var homeScreen = document.getElementById('homeScreen');
+    // homeScreen.style = '';
 }
 
 app.initialize();
