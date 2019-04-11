@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="cordova.js"></script>
+    <script src='homePage.html'></script>
 </head>
 
 <body>
@@ -21,19 +22,108 @@
             </div>
         </ons-toolbar>
         <div class='content' id='canvas' style='visibility: hidden'>
-            <div style="text-align; margin-top: 30px">
-                <p class='center'>
-                    <ons-input id="listName" modifier="underbar" placeholder="Inventory List"></ons-input>
-                </p>
-                <p class='center'>
-                    <ons-input id="location" modifier="underbar" placeholder="Location"></ons-input>
-                </p>
-                <p style="margin-top: 30px;" class='center'>
-                    <ons-button id='newListButton' onclick="dialogShow()">Create List</ons-button>
-                </p>
-                <p style="margin-top: 30px;" class='center'>
-                    <ons-button id='newListButton' onclick="scan()">Camera</ons-button>
-                </p>
+            <div >
+                <div class="card" style='height: 200px'>
+                    <p class='center'>
+                        <ons-input id="listName" modifier="underbar" placeholder="Inventory List"></ons-input>
+                    </p>
+                    <p class='center'>
+                        <ons-input id="location" modifier="underbar" placeholder="Location"></ons-input>
+                    </p>
+                    <ons-row>
+                        <ons-col>
+                            <p style="margin-top: 15px;" class='center'>
+                                <ons-button id='newScanButton' onclick="scan()">
+                                    <ons-icon icon='fa-barcode'></ons-icon>
+                                </ons-button>
+                            </p>
+                        </ons-col>
+                        <ons-col>
+                            <p style="margin-top: 15px;" class='center'>
+                                <ons-button id='newListButton' onclick="dialogShow()" type='submit' form='invListForm'>
+                                    <ons-icon icon='fa-save'</ons-icon>
+                                </ons-button>
+                            </p>
+                        </ons-col>
+                    </ons-row>
+                </div>
+            </div>
+            <div style="height: 200px; padding: 1px 0 0 0;">
+                <div class="card" style='height: 300px'>
+                    <h2 class="card__title">Scan List</h2>
+                    <div class="card__content">
+                        <ons-row>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center">UPC</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">QTY.</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center"></div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                        </ons-row>
+                        <ons-row>
+                            <ons-col>
+                                <ul class="list" id='scanList'>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center">Dog</div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center">Cat</div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center">Hamster</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list" id='scanQuantiy'>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">2</div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">3</div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">4</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class='list' id='listDelete'>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">
+                                            <ons-icon icon='fa-trash-alt' style='color: red'></ons-icon>
+                                        </div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">
+                                            <ons-icon icon='fa-trash-alt' style='color: red'></ons-icon>
+                                        </div>
+                                    </li>
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">
+                                            <ons-icon icon='fa-trash-alt' style='color: red'></ons-icon>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                        </ons-row>
+                    </div>
+                </div>
             </div>
         </div>
         <ons-bottom-toolbar>
@@ -60,7 +150,7 @@
         <div class="alert-dialog-title" id="dialogList">New List:</div>
         <br>
         <div class="alert-dialog-footer">
-            <ons-alert-dialog-button onclick='dialogClose(); clearDialog(); insertData()'>OK</ons-alert-dialog-button>
+            <ons-alert-dialog-button onclick='dialogClose(); clearDialog()'>OK</ons-alert-dialog-button>
             <ons-alert-dialog-button onclick='dialogClose(); clearDialog()'>Cancel</ons-alert-dialog-button>
         </div>
     </ons-alert-dialog>
