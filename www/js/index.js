@@ -4,37 +4,6 @@
 // By: Luis Castro
 //===============================================================================================
 
-
-// Created an SQLite DB
-var db = window.sqlitePlugin.openDatabase({name: 'mySQLite.db', location: 'default'});
-
-db.transaction(function(transaction) {
-    transaction.executeSql('CREATE TABLE IF NOT EXISTS invList (id integer primary key, title text, desc text)', [],
-    function(tx, result) {
-        alert('Table created successfully');
-    },
-    function(error) {
-        alert('Error occurred while creating table');
-    });
-});
-
-function insertData() {
-    var name = document.getElementById('dName').innerHTML;
-    var location = document.getElementById('dLocation').innerHTML;
-
-    db.transaction(function(transaction) {
-        var executeQuery = 'INSERT INTO invList (name, location) VALUE (?, ?)';
-        transaction.executeSql(executeQuery, [name, location],
-            function() {
-                alert('Inserted');
-            },
-            function(error) {
-                alert('Error occurred');
-            }
-        );
-    });
-}
-
 var app = {
     // Application Constructor
     initialize: function() {
@@ -81,27 +50,57 @@ function dialogShow() {
     document.getElementById('dialogList').appendChild(list2);
     document.getElementById('dialog-1').show();
 
+    // Sending object 'result' to server
+    console.log(item);
+    var HTTP = new XMLHttpRequest();
+    var URL = 'http://54.198.236.52:3000/test';
+    var data = JSON.stringify(item);
+
+    HTTP.open('POST', URL);
+    HTTP.setRequestHeader('Content-type', 'application/json');
+    HTTP.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(HTTP.responseText);
+        }
+    };
+    HTTP.send(data);
+
     clearForm();
 }
 
 function scan() {
     cordova.plugins.barcodeScanner.scan(
-        function (result) { // result is the JSON object that holds barcode data
+        function(result) { // result is the JSON object that holds barcode data
             alert("We got a barcode\n" +
-                  "Result: " + result.text + "\n" +
-                  "Format: " + result.format + "\n" +
-                  "Cancelled: " + result.cancelled);
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
+
+            // Sending UPC data to server
+            console.log(result);
+            var HTTP = new XMLHttpRequest();
+            var URL = 'http://54.198.236.52:3000/upcScan';
+            var data = JSON.stringify(result);
+
+            HTTP.open('POST', URL);
+            HTTP.setRequestHeader('Content-type', 'application/json');
+            HTTP.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(HTTP.responseText);
+                }
+            };
+            HTTP.send(data);
+
         },
-        function (error) {
+        function(error) {
             alert("Scanning failed: " + error);
         }
-     );
+    );
 }
 
 function clearForm() {
     document.getElementById('listName').value = '';
     document.getElementById('location').value = '';
-
 }
 
 function clearDialog() {
@@ -119,13 +118,17 @@ function dialogClose() {
 function invPage() {
     var canvas = document.getElementById('canvas');
     canvas.style = '';
+
+    // var home = document.getElementById('homeScreen');
+    // home.style = 'visibility: hidden';
 }
 
 function homePage() {
     var home = document.getElementById('canvas');
     canvas.style = 'visibility: hidden';
+
+    // var homeScreen = document.getElementById('homeScreen');
+    // homeScreen.style = '';
 }
-
-
 
 app.initialize();
