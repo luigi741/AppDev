@@ -98,6 +98,28 @@ function scan() {
     );
 }
 
+function showPop(target) {
+    document.getElementById('confirmPop').show(target);
+}
+
+function hidePop() {
+    document.getElementById('confirmPop').hide();
+}
+
+function showAlert() {
+    // var dialog = document.getElementById('confirmAlert');
+    // dialog.style = '';
+    document.getElementById('confirmAlert').show();
+}
+
+function hideAlert() {
+    document.getElementById('confirmAlert').hide();
+    var qty = document.getElementById('qtyInput');
+    var upc = document.getElementById('upcInput');
+    qty.value='';
+    upc.value='';
+}
+
 function clearForm() {
     document.getElementById('listName').value = '';
     document.getElementById('location').value = '';
