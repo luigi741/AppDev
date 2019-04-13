@@ -8,11 +8,18 @@
   },
   "installed_plugins": {
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.example.inventory"
+      "PACKAGE_NAME": "com.myApp.inventory"
     },
-    "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "com.example.inventory"
+    "cordova-plugin-http": {
+      "PACKAGE_NAME": "com.myApp.inventory"
+    },
+    "cordova-plugin-barcodescanner": {
+      "PACKAGE_NAME": "com.myApp.inventory"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.myApp.inventory"
+    }
+  }
 }
