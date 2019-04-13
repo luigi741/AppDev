@@ -25,7 +25,7 @@
             <div>
                 <div class="card" style='height: 200px'>
                     <p class='center'>
-                        <ons-input id="listName" modifier="underbar" placeholder="Inventory List"></ons-input>
+                        <ons-input id="listName" modifier="underbar" placeholder="List Name"></ons-input>
                     </p>
                     <p class='center'>
                         <ons-input id="location" modifier="underbar" placeholder="Location"></ons-input>
@@ -41,7 +41,7 @@
                         </ons-col>
                         <ons-col>
                             <p style="margin-top: 15px;" class='center'>
-                                <ons-button id='newListButton' onclick="dialogShow()" type='submit' form='invListForm'>
+                                <ons-button id='newListButton' onclick="dialogShow(); saveList()" type='submit' form='invListForm'>
                                     Save
                                     <ons-icon icon='fa-save' style='margin-left: 5px'></ons-icon>
                                 </ons-button>
@@ -108,7 +108,7 @@
                 <div class="alert-dialog-content">
                     <ons-row>
                         <ons-col style='width: 65%'>
-                            <input id='upcInput' type="number" class="text-input text-input--underbar" placeholder="UPC" value="" style="margin-left: 5px; width: 150px; padding: 5px">
+                            <input id='upcInput' type="number" class="text-input text-input--underbar" placeholder="UPC" value="" style="margin-left: 5px; width: 150px; padding: 5px" maxlength="12">
                         </ons-col>
                         <ons-col style='width: 35%'>
                             <input id='qtyInput' type="number" class="text-input text-input--underbar" placeholder="QTY" value="" style='width: 50px; padding: 5px; margin-left: 5px'>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="alert-dialog-footer">
                     <ons-alert-dialog-button onclick="hideAlert()">Cancel</ons-alert-dialog-button>
-                    <ons-alert-dialog-button onclick="addItem(this, addUPC)">Save</ons-alert-dialog-button>
+                    <ons-alert-dialog-button onclick="addItem()">Save</ons-alert-dialog-button>
                 </div>
             </ons-alert-dialog>
         </div>
