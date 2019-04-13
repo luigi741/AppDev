@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div style="height: 200px; padding: 1px 0 0 0;">
-                <div class="card" style='height: 300px'>
+                <div class="card" style='height: 300px; resize: vertical; overflow: auto'>
                     <h2 class="card__title">Scan List</h2>
                     <div class="card__content">
                         <ons-row>
@@ -91,7 +91,7 @@
                                 </ul>
                             </ons-col>
                             <ons-col>
-                                <ul class="list" id='scanQuantiy'>
+                                <ul class="list" id='scanQuantity'>
                                 </ul>
                             </ons-col>
                             <ons-col>
@@ -103,7 +103,8 @@
                 </div>
             </div>
             <ons-alert-dialog id="confirmAlert" modifier="rowfooter" style='hidden'>
-                <div class="alert-dialog-title">Alert</div>
+                <div class="alert-dialog-title">Confirm Scan</div>
+                <br>
                 <div class="alert-dialog-content">
                     <ons-row>
                         <ons-col style='width: 65%'>
@@ -116,7 +117,7 @@
                 </div>
                 <div class="alert-dialog-footer">
                     <ons-alert-dialog-button onclick="hideAlert()">Cancel</ons-alert-dialog-button>
-                    <ons-alert-dialog-button onclick="hideAlert()">OK</ons-alert-dialog-button>
+                    <ons-alert-dialog-button onclick="addItem(this, addUPC)">Save</ons-alert-dialog-button>
                 </div>
             </ons-alert-dialog>
         </div>

@@ -114,6 +114,76 @@ function showAlert() {
 
 function hideAlert() {
     document.getElementById('confirmAlert').hide();
+}
+
+// Add item to scan list
+function addItem(callback) {
+    var upc = document.getElementById('upcInput').value;
+    var qty = document.getElementById('qtyInput').value;
+
+    console.log(upc);
+    console.log(qty);
+
+    var scanList    = document.getElementById('scanList');
+    var scanQty     = document.getElementById('scanQuantity');
+    var listDel     = document.getElementById('listDeleteIcon');
+
+    var listNode = document.createElement('li');
+    var listLI =
+        '<div class="list-item__center list-item--nodivider__center">' +
+            upc +
+        '</div>';
+    listNode.className = 'list-item list-item--nodivider'
+    listNode.innerHTML = listLI;
+
+    var qtyNode = document.createElement('li');
+    var qtyLI =
+        '<div class="list-item__right list-item--nodivider__right">' +
+            qty +
+        '</div>';
+    qtyNode.className = 'list-item list-item--nodivider';
+    qtyNode.innerHTML = qtyLI;
+
+    var iconNode = document.createElement('li');
+    var iconDel =
+        '<div class="list-item__right list-item--nodivider__right">' +
+            '<ons-icon icon="fa-trash-alt" style="color: red"></ons-icon>' +
+        '</div>';
+    iconNode.className = 'list-item list-item--nodivider';
+    iconNode.innerHTML = iconDel;
+
+    scanList.appendChild(listNode);
+    scanQty.appendChild(qtyNode);
+    listDel.appendChild(iconNode);
+
+    // var scanListLI = document.createElement('li');
+    // scanListLI.class = 'list-item list-item--nodivider';
+    // scanList.appendChild(scanListLI);
+
+    // addUPC();
+    hideAlert();
+    clearAlertForm();
+}
+
+function addUPC() {
+    var upc = document.getElementById('upcInput').value;
+    var scanListDiv = document.createElement('div');
+    scanListDiv.class = 'list-item__right list-item--nodivider__right';
+    scanListDiv.innerHTML = upc;
+
+    var list = document.getElementById('scanListLI');
+
+    if (list) {
+        console.log(list);
+    }
+    else {
+        console.log('Empty');
+    }
+    // list.appendChild(scanListDiv);
+}
+
+// Clear scan confirm alert
+function clearAlertForm() {
     var qty = document.getElementById('qtyInput');
     var upc = document.getElementById('upcInput');
     qty.value='';
