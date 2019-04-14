@@ -34,63 +34,62 @@ var app = {
 
 function dialogShow() {
     // Get form values
-    var item = {};
-    item.name = document.getElementById('listName').value;
-    item.location = document.getElementById('location').value;
+    // var item = {};
+    itemsList.name = document.getElementById('listName').value;
+    itemsList.location = document.getElementById('location').value;
 
-    var list1 = document.createElement('P');
-    list1.setAttribute('id', 'dName');
-    list1.innerHTML = item.name;
-
-    var list2 = document.createElement('P');
-    list2.setAttribute('id', 'dLocation');
-    list2.innerHTML = item.location;
-
-    document.getElementById('dialogList').appendChild(list1);
-    document.getElementById('dialogList').appendChild(list2);
-    document.getElementById('dialog-1').show();
-
-    // Sending object 'result' to server
-    console.log(item);
-    var HTTP = new XMLHttpRequest();
-    var URL = 'http://54.198.236.52:3000/test';
-    var data = JSON.stringify(item);
-
-    HTTP.open('POST', URL);
-    HTTP.setRequestHeader('Content-type', 'application/json');
-    HTTP.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log(HTTP.responseText);
-        }
-    };
-    HTTP.send(data);
-
-    clearForm();
+    if (itemsList.name == '' || itemsList.location == '') {
+        alert('Please fill out list name and location');
+    }
+    // else {
+    //     var list1 = document.createElement('P');
+    //     list1.setAttribute('id', 'dName');
+    //     list1.innerHTML = item.name;
+    //
+    //     var list2 = document.createElement('P');
+    //     list2.setAttribute('id', 'dLocation');
+    //     list2.innerHTML = item.location;
+    //
+    //     document.getElementById('dialogList').appendChild(list1);
+    //     document.getElementById('dialogList').appendChild(list2);
+    //     document.getElementById('dialog-1').show();
+    //
+    //     // console.log(item);
+    //     clearForm();
+    // }
+    // clearForm();
 }
 
 function scan() {
     cordova.plugins.barcodeScanner.scan(
         function(result) { // result is the JSON object that holds barcode data
-            alert("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
+            // alert("We got a barcode\n" +
+            //     "Result: " + result.text + "\n" +
+            //     "Format: " + result.format + "\n" +
+            //     "Cancelled: " + result.cancelled);
 
             // Sending UPC data to server
-            console.log(result);
-            var HTTP = new XMLHttpRequest();
-            var URL = 'http://54.198.236.52:3000/upcScan';
-            var data = JSON.stringify(result);
+            // console.log(result);
+            // var HTTP = new XMLHttpRequest();
+            // var URL = 'http://54.198.236.52:3000/upcScan';
+            // var data = JSON.stringify(result);
+            //
+            // HTTP.open('POST', URL);
+            // HTTP.setRequestHeader('Content-type', 'application/json');
+            // HTTP.onreadystatechange = function() {
+            //     if (this.readyState == 4 && this.status == 200) {
+            //         console.log(HTTP.responseText);
+            //     }
+            // };
+            // HTTP.send(data);
 
-            HTTP.open('POST', URL);
-            HTTP.setRequestHeader('Content-type', 'application/json');
-            HTTP.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    console.log(HTTP.responseText);
-                }
-            };
-            HTTP.send(data);
-
+            if (result.cancelled) {
+                console.log('Scan cancelled.');
+            }
+            else {
+                showAlert();
+                document.getElementById('upcInput').value = result.text;
+            }
         },
         function(error) {
             alert("Scanning failed: " + error);
@@ -117,77 +116,83 @@ function hideAlert() {
 }
 
 // Add item to scan list
-function addItem(callback) {
-    var upc = document.getElementById('upcInput').value;
-    var qty = document.getElementById('qtyInput').value;
+var itemsList = [];
+function addItem() {
+    var itemCheck = list.filter(function(element, index, array) {
+        return index.UPC.includes('456');
+    });
+    console.log(itemCheck[0].upc);
 
-    console.log(upc);
-    console.log(qty);
+    // If UPC is already in the list just add qty, else add it into list
+    if (itemCheck) {
 
-    var scanList    = document.getElementById('scanList');
-    var scanQty     = document.getElementById('scanQuantity');
-    var listDel     = document.getElementById('listDeleteIcon');
-
-    var listNode = document.createElement('li');
-    var listLI =
-        '<div class="list-item__center list-item--nodivider__center">' +
-            upc +
-        '</div>';
-    listNode.className = 'list-item list-item--nodivider'
-    listNode.innerHTML = listLI;
-
-    var qtyNode = document.createElement('li');
-    var qtyLI =
-        '<div class="list-item__right list-item--nodivider__right">' +
-            qty +
-        '</div>';
-    qtyNode.className = 'list-item list-item--nodivider';
-    qtyNode.innerHTML = qtyLI;
-
-    var iconNode = document.createElement('li');
-    var iconDel =
-        '<div class="list-item__right list-item--nodivider__right">' +
-            '<ons-icon icon="fa-trash-alt" style="color: red"></ons-icon>' +
-        '</div>';
-    iconNode.className = 'list-item list-item--nodivider';
-    iconNode.innerHTML = iconDel;
-
-    scanList.appendChild(listNode);
-    scanQty.appendChild(qtyNode);
-    listDel.appendChild(iconNode);
-
-    // var scanListLI = document.createElement('li');
-    // scanListLI.class = 'list-item list-item--nodivider';
-    // scanList.appendChild(scanListLI);
-
-    // addUPC();
-    hideAlert();
-    clearAlertForm();
-}
-
-function addUPC() {
-    var upc = document.getElementById('upcInput').value;
-    var scanListDiv = document.createElement('div');
-    scanListDiv.class = 'list-item__right list-item--nodivider__right';
-    scanListDiv.innerHTML = upc;
-
-    var list = document.getElementById('scanListLI');
-
-    if (list) {
-        console.log(list);
     }
     else {
-        console.log('Empty');
+        var upc = document.getElementById('upcInput').value;
+        var qty = document.getElementById('qtyInput').value;
+
+        var scanList = document.getElementById('scanList');
+        var scanQty = document.getElementById('scanQuantity');
+        var listDel = document.getElementById('listDeleteIcon');
+
+        var listNode = document.createElement('li');
+        var listLI =
+            '<div class="list-item__center list-item--nodivider__center">' +
+                upc +
+            '</div>';
+        listNode.className = 'list-item list-item--nodivider'
+        listNode.innerHTML = listLI;
+
+        var qtyNode = document.createElement('li');
+        var qtyLI =
+            '<div class="list-item__right list-item--nodivider__right">' +
+                qty +
+            '</div>';
+        qtyNode.className = 'list-item list-item--nodivider';
+        qtyNode.innerHTML = qtyLI;
+
+        var iconNode = document.createElement('li');
+        var iconDel =
+            '<div class="list-item__right list-item--nodivider__right">' +
+                '<ons-icon icon="fa-trash-alt" style="color: red; font-size: 20px" onclick="alert()">' +
+                '</ons-icon>' +
+            '</div>';
+        iconNode.className = 'list-item list-item--nodivider';
+        iconNode.innerHTML = iconDel;
+
+        scanList.appendChild(listNode);
+        scanQty.appendChild(qtyNode);
+        listDel.appendChild(iconNode);
+
+        var itemToPush = {
+            UPC: upc,
+            QTY: qty
+        };
+        itemsList.push(itemToPush);
+        hideAlert();
+        clearAlertForm();
     }
-    // list.appendChild(scanListDiv);
+}
+
+var list = {};
+function saveList() {
+    var itemArr = itemsList;
+
+    // Get list name, location, and items
+    list.name       = document.getElementById('listName').value;
+    list.location   = document.getElementById('location').value;
+    list.items      = itemArr;
+
+    console.log('item:\n' + JSON.stringify(list, null, 4));
+    clearForm();
 }
 
 // Clear scan confirm alert
 function clearAlertForm() {
     var qty = document.getElementById('qtyInput');
     var upc = document.getElementById('upcInput');
-    qty.value='';
-    upc.value='';
+    qty.value = '';
+    upc.value = '';
 }
 
 function clearForm() {
