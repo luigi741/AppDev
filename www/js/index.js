@@ -118,53 +118,60 @@ function hideAlert() {
 // Add item to scan list
 var itemsList = [];
 function addItem() {
-    var upc = document.getElementById('upcInput').value;
-    var qty = document.getElementById('qtyInput').value;
+    var itemCheck = list.filter(function(element, index, array) {
+        return index.UPC.includes('456');
+    });
+    console.log(itemCheck[0].upc);
 
-    var scanList    = document.getElementById('scanList');
-    var scanQty     = document.getElementById('scanQuantity');
-    var listDel     = document.getElementById('listDeleteIcon');
+    // If UPC is already in the list just add qty, else add it into list
+    if (itemCheck) {
 
-    var listNode = document.createElement('li');
-    var listLI =
-        '<div class="list-item__center list-item--nodivider__center">' +
-            upc +
-        '</div>';
-    listNode.className = 'list-item list-item--nodivider'
-    listNode.innerHTML = listLI;
+    }
+    else {
+        var upc = document.getElementById('upcInput').value;
+        var qty = document.getElementById('qtyInput').value;
 
-    var qtyNode = document.createElement('li');
-    var qtyLI =
-        '<div class="list-item__right list-item--nodivider__right">' +
-            qty +
-        '</div>';
-    qtyNode.className = 'list-item list-item--nodivider';
-    qtyNode.innerHTML = qtyLI;
+        var scanList = document.getElementById('scanList');
+        var scanQty = document.getElementById('scanQuantity');
+        var listDel = document.getElementById('listDeleteIcon');
 
-    var iconNode = document.createElement('li');
-    var iconDel =
-        '<div class="list-item__right list-item--nodivider__right">' +
-            '<ons-icon icon="fa-trash-alt" style="color: red; font-size: 20px" onclick="alert()">' +
-            '</ons-icon>' +
-        '</div>';
-    iconNode.className = 'list-item list-item--nodivider';
-    iconNode.innerHTML = iconDel;
+        var listNode = document.createElement('li');
+        var listLI =
+            '<div class="list-item__center list-item--nodivider__center">' +
+                upc +
+            '</div>';
+        listNode.className = 'list-item list-item--nodivider'
+        listNode.innerHTML = listLI;
 
-    scanList.appendChild(listNode);
-    scanQty.appendChild(qtyNode);
-    listDel.appendChild(iconNode);
+        var qtyNode = document.createElement('li');
+        var qtyLI =
+            '<div class="list-item__right list-item--nodivider__right">' +
+                qty +
+            '</div>';
+        qtyNode.className = 'list-item list-item--nodivider';
+        qtyNode.innerHTML = qtyLI;
 
-    var itemToPush = {
-        UPC: upc,
-        QTY: qty
-    };
-    itemsList.push(itemToPush);
+        var iconNode = document.createElement('li');
+        var iconDel =
+            '<div class="list-item__right list-item--nodivider__right">' +
+                '<ons-icon icon="fa-trash-alt" style="color: red; font-size: 20px" onclick="alert()">' +
+                '</ons-icon>' +
+            '</div>';
+        iconNode.className = 'list-item list-item--nodivider';
+        iconNode.innerHTML = iconDel;
 
-    hideAlert();
-    clearAlertForm();
+        scanList.appendChild(listNode);
+        scanQty.appendChild(qtyNode);
+        listDel.appendChild(iconNode);
 
-    console.log('addItem():');
-    console.log(itemsList);
+        var itemToPush = {
+            UPC: upc,
+            QTY: qty
+        };
+        itemsList.push(itemToPush);
+        hideAlert();
+        clearAlertForm();
+    }
 }
 
 var list = {};
@@ -176,6 +183,7 @@ function saveList() {
     list.location   = document.getElementById('location').value;
     list.items      = itemArr;
 
+    console.log('item:\n' + JSON.stringify(list, null, 4));
     clearForm();
 }
 
