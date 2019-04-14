@@ -130,5 +130,15 @@ function homePage() {
     // var homeScreen = document.getElementById('homeScreen');
     // homeScreen.style = '';
 }
+// Switch to user page
+function userPage(){
+    let userPage = document.getElementById('userPageCanvas');
+    window.location.href = "userPage.html";
 
+}
+// Switch to user list page.
+function userListPage(){
+    let userListPage = document.getElementById('userListPageCanvas');
+    window.location.href = "userListPage.html";
+}
 app.initialize();

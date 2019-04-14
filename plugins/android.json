@@ -7,17 +7,20 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-barcodescanner": {
       "PACKAGE_NAME": "com.myApp.inventory"
     },
     "cordova-plugin-http": {
       "PACKAGE_NAME": "com.myApp.inventory"
     },
-    "cordova-plugin-barcodescanner": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.myApp.inventory"
     }
   },
   "dependent_plugins": {
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.myApp.inventory"
+    },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "com.myApp.inventory"
     }
