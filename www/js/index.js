@@ -118,14 +118,18 @@ function hideAlert() {
 // Add item to scan list
 var itemsList = [];
 function addItem() {
-    var itemCheck = list.filter(function(element, index, array) {
-        return index.UPC.includes('456');
-    });
-    console.log(itemCheck[0].upc);
+    var index = false;
+    for (var i = 0; i < list.length; i++) {
+        if (list[i].UPC == '951') {
+            console.log('Index: ' + i);
+            index = true;
+            break;
+        }
+    }
 
     // If UPC is already in the list just add qty, else add it into list
     if (itemCheck) {
-
+        itemCheck[0]
     }
     else {
         var upc = document.getElementById('upcInput').value;
