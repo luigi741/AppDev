@@ -63,26 +63,6 @@ function dialogShow() {
 function scan() {
     cordova.plugins.barcodeScanner.scan(
         function(result) { // result is the JSON object that holds barcode data
-            // alert("We got a barcode\n" +
-            //     "Result: " + result.text + "\n" +
-            //     "Format: " + result.format + "\n" +
-            //     "Cancelled: " + result.cancelled);
-
-            // Sending UPC data to server
-            // console.log(result);
-            // var HTTP = new XMLHttpRequest();
-            // var URL = 'http://54.198.236.52:3000/upcScan';
-            // var data = JSON.stringify(result);
-            //
-            // HTTP.open('POST', URL);
-            // HTTP.setRequestHeader('Content-type', 'application/json');
-            // HTTP.onreadystatechange = function() {
-            //     if (this.readyState == 4 && this.status == 200) {
-            //         console.log(HTTP.responseText);
-            //     }
-            // };
-            // HTTP.send(data);
-
             if (result.cancelled) {
                 console.log('Scan cancelled.');
             }
@@ -195,14 +175,64 @@ function addItem() {
 var list = {};
 function saveList() {
     var itemArr = itemsList;
+    var crDate = new Date();
 
     // Get list name, location, and items
-    list.name       = document.getElementById('listName').value;
-    list.location   = document.getElementById('location').value;
-    list.items      = itemArr;
-
+    list.name           = document.getElementById('listName').value;
+    list.location       = document.getElementById('location').value;
+    list.items          = itemArr;
+    list.creationDate   = crDate.toISOString();
+    list.user           = 'luiscastro';
     console.log('item:\n' + JSON.stringify(list, null, 4));
-    clearForm();
+
+    if (list.name == '' || list.location == '') {
+        alert('Please fill out list name and location');
+    }
+    else if (list.items.length == 0) {
+        alert('Please add items to scan list before saving');
+    }
+    else {
+        // HTTP 'POST' request to MongoDB server
+        var xHTTP = new XMLHttpRequest();
+        var xURL = 'http://54.198.236.52:3000/upcScan';
+        var data = JSON.stringify(list);
+
+        xHTTP.open('POST', xURL);
+        xHTTP.setRequestHeader('Content-type', 'application/json');
+        xHTTP.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(xHTTP.responseText);
+            }
+        };
+        xHTTP.send(data);
+        clearForm();
+        clearListObj();
+        clearScanList();
+    }
+}
+
+function clearListObj() {
+    // Clear objects and arrays storing JSON data that was sent to DB
+    list = {};
+    listToSave = {};
+    itemsList = [];
+}
+
+function clearScanList() {
+    var scanNode = document.getElementById('scanList');
+    while (scanNode.firstChild) {
+        scanNode.removeChild(scanNode.firstChild);
+    }
+
+    var qtyNode = document.getElementById('scanQuantity');
+    while (qtyNode.firstChild) {
+        qtyNode.removeChild(qtyNode.firstChild);
+    }
+
+    var deleteNode = document.getElementById('listDeleteIcon');
+    while (deleteNode.firstChild) {
+        deleteNode.removeChild(deleteNode.firstChild);
+    }
 }
 
 // Clear scan confirm alert
