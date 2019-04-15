@@ -227,12 +227,19 @@ function dialogClose() {
 
 function invPage() {
     var canvas = document.getElementById('canvas');
-    canvas.style = '';
+    window.location.href = "index.html";
 }
 
 function homePage() {
     var home = document.getElementById('canvas');
-    canvas.style = 'visibility: hidden';
+    window.location.href = "homePage.html";
+
+}
+function userPage(){
+    window.location.href = "userPage.html";
+}
+function userListPage(){
+    window.location.href = "userListPage.html";
 }
 
 app.initialize();
