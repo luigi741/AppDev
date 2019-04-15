@@ -116,25 +116,39 @@ function hideAlert() {
 }
 
 // Add item to scan list
+var listToSave = {};
 var itemsList = [];
 function addItem() {
-    var index = false;
-    for (var i = 0; i < list.length; i++) {
-        if (list[i].UPC == '951') {
-            console.log('Index: ' + i);
-            index = true;
+    var check = false;
+    var index = -1;
+    var upc = document.getElementById('upcInput').value;
+    var qty = document.getElementById('qtyInput').value;
+
+    // Loop through array to see if any UPCs are already in list
+    for (var i = 0; i < itemsList.length; i++) {
+        if (itemsList[i].UPC == upc) {
+            check = true;
+            index = i;
             break;
         }
     }
 
     // If UPC is already in the list just add qty, else add it into list
-    if (itemCheck) {
-        itemCheck[0]
+    if (check) {
+        // Need to convert strings to int
+        if (itemsList != undefined || itemsList.length == 0) {
+            var qtyCurrent = Number(itemsList[index].QTY);
+            var qtyNew = Number(qty);
+            var qtyTotal = qtyCurrent + qtyNew;
+        }
+        itemsList[index].QTY = qtyTotal.toString();
+
+        // Change quantity of item already on scan list
+        if (index >= 0) {
+            document.getElementById('scanQuantity').children[index].children[0].innerHTML = qtyTotal;
+        }
     }
     else {
-        var upc = document.getElementById('upcInput').value;
-        var qty = document.getElementById('qtyInput').value;
-
         var scanList = document.getElementById('scanList');
         var scanQty = document.getElementById('scanQuantity');
         var listDel = document.getElementById('listDeleteIcon');
@@ -173,9 +187,9 @@ function addItem() {
             QTY: qty
         };
         itemsList.push(itemToPush);
-        hideAlert();
-        clearAlertForm();
     }
+    hideAlert();
+    clearAlertForm();
 }
 
 var list = {};
