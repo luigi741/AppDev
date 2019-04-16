@@ -283,13 +283,21 @@ function dialogClose() {
 }
 
 function invPage() {
-    var canvas = document.getElementById('canvas');
-    canvas.style = '';
+    window.location.href = 'index.html';
+    setTimeout(function() {
+        invPageShow();
+    }, 500);
+}
+
+function invPageShow() {
+    var inv = document.getElementById('canvas');
+    inv.style = 'visibility: visible';
 }
 
 function homePage() {
+    window.location.href = 'index.html';
     var home = document.getElementById('canvas');
-    canvas.style = 'visibility: hidden';
+    home.style = 'visibility: hidden';
 }
 
 function userPage(){
