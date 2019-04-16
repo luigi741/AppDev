@@ -2,7 +2,7 @@ function getListNames() {
     // Sending UPC data to server
     //console.log(result);
     var HTTP = new XMLHttpRequest();
-    var URL = 'http://locahost:3000/getListNames';
+    var URL = 'http://54.198.236.52:3000/getListNames';
     //var data = JSON.stringify(result);
 
     HTTP.open('GET', URL);
@@ -12,7 +12,7 @@ function getListNames() {
             console.log(HTTP.responseText);
         }
     };
-    HTTP.send({})
+    HTTP.send({});
 }
 
 function displayListNames(users){
@@ -50,7 +50,7 @@ async function getLists(){
 }
 
 function makeQuery(user){
-    return query(`http://localhost:3000/getListNames/${user}`, {
+    return query(`http://54.198.236.52:3000/getListNames/${user}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

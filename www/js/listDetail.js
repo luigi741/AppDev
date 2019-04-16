@@ -131,7 +131,7 @@ async function updateItemsInfo() {
 }
 
 function makeQuery(id) {
-    return query(`http://localhost:3000/getList?id=${id}`, {
+    return query(`http://54.198.236.52:3000/getList?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -156,9 +156,6 @@ async function updateListInfo() {
 
     await updateListName(body)
         .then((response) => {
-
-
-
             document.getElementById("listName").innerHTML = listName
             document.getElementById("locationInfo").innerHTML = `Location: ${location}`
             document.getElementById('confirmAlert').hide();
@@ -170,7 +167,7 @@ async function updateListInfo() {
 }
 
 function updateListName(body) {
-    return query(`http://localhost:3000/updateListNames`, {
+    return query(`http://54.198.236.52:3000/updateListNames`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
