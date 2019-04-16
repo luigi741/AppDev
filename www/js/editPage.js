@@ -1,5 +1,6 @@
 let editName;
 let editUsername;
+//  Creating html elements.
 editName = sessionStorage.getItem('name')
 editUsername = sessionStorage.getItem('email');
 sessionStorage.clear();
@@ -21,7 +22,12 @@ submitChangesBtn.innerHTML = 'Submit Changes';
 submitChangesBtn.setAttribute('onclick', "submit()");
 card.append(submitChangesBtn);
 editUserPageCanvas.append(card);
+// end of html creation
 
+/**when this function runs, it will grab the value in the text boxes and make an object out of them.
+ * We also send the old information that was in the textbox to the  API will use the combination of these two objects
+ * to find and update the user.
+ */
 function submit(){
     console.log(nameTextBox.value);
     console.log(usernameTextBox.value);

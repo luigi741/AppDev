@@ -64,6 +64,8 @@ HTTP.onreadystatechange = function() {
     }
 };
 
+// Function grabs the name and email off the card by scanning it's attributes. Then sends stores the information in cache.
+// Lastly, it navigates to the editUserPage.html.
 function editUserPage(card){
     console.log(card);
     sessionStorage.setItem('name', card.getAttribute('name'));
