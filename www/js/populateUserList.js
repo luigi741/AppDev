@@ -3,7 +3,7 @@ let HTTP = new XMLHttpRequest();
 var URL = 'http://192.168.10.105:3000/getUsers';
 HTTP.open('GET', URL);
 HTTP.responseType = 'text';
-
+card_number = 0;
 // Once we get a response
 HTTP.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -31,6 +31,9 @@ HTTP.onreadystatechange = function() {
             let userElement =  document.createElement("ons-list-item")
             let card = document.createElement("div");
             card.setAttribute('class', 'card'); 
+            card.setAttribute('id', 'card' + card_number);
+            card.setAttribute('onclick', 'editUserPage(this)');
+            card_number++;
 
             // For each key
             keys.forEach(function(key){
@@ -50,6 +53,7 @@ HTTP.onreadystatechange = function() {
                 row.append(labelColumn);
                 row.append(columnDescription);
                 userElement.append(row);
+                card.setAttribute(key, user[key]);
                 card.append(userElement);
             });
             // Finally append the card to the list.
@@ -60,5 +64,13 @@ HTTP.onreadystatechange = function() {
     }
 };
 
+// Function grabs the name and email off the card by scanning it's attributes. Then sends stores the information in cache.
+// Lastly, it navigates to the editUserPage.html.
+function editUserPage(card){
+    console.log(card);
+    sessionStorage.setItem('name', card.getAttribute('name'));
+    sessionStorage.setItem('email', card.getAttribute('email'));
+    window.location.href = 'editUserPage.html';
+}
 // send the request
 HTTP.send();
