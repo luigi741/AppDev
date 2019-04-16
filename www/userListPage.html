@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="js/index.js"></script>
+
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <h4 class="center" font-family="Noto Sans; sans-serif">User List</h4>
+            <div class="right">
+                <ons-toolbar-button>
+                    <ons-icon icon="ion-navicon, material:md-more-vert"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+        </ons-toolbar>
+        <div class='content' id='userListPageCanvas' style='visibility: visible'>
+            
+        </div>
+        <ons-bottom-toolbar>
+            <ons-row>
+                    <ons-col class="center">
+                        <ons-toolbar-button>
+                            <ons-icon size="30px" icon="ion-home" onclick="homePage()"></ons-icon>
+                        </ons-toolbar-button>
+                    </ons-col>
+                    <ons-col class="center">
+                        <ons-toolbar-button onclick="invPage()">
+                            <ons-icon size="30px" icon="ion-clipboard"></ons-icon>
+                        </ons-toolbar-button>
+                    </ons-col>
+                    <ons-col class="center">
+                        <ons-toolbar-button onclick="userPage()">
+                            <ons-icon size="30px" icon="md-settings"></ons-icon>
+                        </ons-toolbar-button>
+                    </ons-col>
+            </ons-row>
+        </ons-bottom-toolbar>
+        
+    </ons-page>
+</body>
+<script src="js/populateUserList.js"></script>

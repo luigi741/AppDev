@@ -55,9 +55,9 @@ function login() {
             emailVerified = user.emailVerified;
             uid = user.uid;
         }
-        
+
         // Transfer to index.html upon successful login
-        window.location = 'index.html';
+        window.location = 'homePage.html';
     }).catch(error => {
         // Catch errors here
         var errorCode = error.code;
@@ -284,19 +284,20 @@ function dialogClose() {
 }
 
 function invPage() {
-    var canvas = document.getElementById('canvas');
-    canvas.style = '';
-
-    // var home = document.getElementById('homeScreen');
-    // home.style = 'visibility: hidden';
+    window.location.href = 'addInv.html';
 }
 
 function homePage() {
+    window.location.href = 'homePage.html';
     var home = document.getElementById('canvas');
-    canvas.style = 'visibility: hidden';
+    home.style = 'visibility: hidden';
+}
 
-    // var homeScreen = document.getElementById('homeScreen');
-    // homeScreen.style = '';
+function userPage() {
+    window.location.href = "userPage.html";
+}
+function userListPage() {
+    window.location.href = "userListPage.html";
 }
 
 app.initialize();
