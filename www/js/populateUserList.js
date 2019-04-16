@@ -1,6 +1,6 @@
 // Create a GET request
 let HTTP = new XMLHttpRequest();
-var URL = 'http://54.198.236.52/getUsers';
+var URL = 'http://54.198.236.52:3000/getUsers';
 HTTP.open('GET', URL);
 HTTP.responseType = 'text';
 card_number = 0;
