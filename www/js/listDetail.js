@@ -180,7 +180,7 @@ function updateListName(body) {
 }
 
 function updateItems(body, id) {
-    return query(`http://localhost:3000/updateItems/${id}`, {
+    return query(`http://54.198.236.52:3000/updateItems/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
