@@ -3,7 +3,7 @@ let HTTP = new XMLHttpRequest();
 var URL = 'http://192.168.10.105:3000/getUsers';
 HTTP.open('GET', URL);
 HTTP.responseType = 'text';
-
+card_number = 0;
 // Once we get a response
 HTTP.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -31,6 +31,8 @@ HTTP.onreadystatechange = function() {
             let userElement =  document.createElement("ons-list-item")
             let card = document.createElement("div");
             card.setAttribute('class', 'card'); 
+            card.setAttribute('id', 'card' + card_number);
+            card_number++;
 
             // For each key
             keys.forEach(function(key){
