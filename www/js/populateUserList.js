@@ -32,6 +32,7 @@ HTTP.onreadystatechange = function() {
             let card = document.createElement("div");
             card.setAttribute('class', 'card'); 
             card.setAttribute('id', 'card' + card_number);
+            card.setAttribute('onclick', 'editUserPage(this)');
             card_number++;
 
             // For each key
@@ -52,6 +53,7 @@ HTTP.onreadystatechange = function() {
                 row.append(labelColumn);
                 row.append(columnDescription);
                 userElement.append(row);
+                card.setAttribute(key, user[key]);
                 card.append(userElement);
             });
             // Finally append the card to the list.
@@ -62,5 +64,11 @@ HTTP.onreadystatechange = function() {
     }
 };
 
+function editUserPage(card){
+    console.log(card);
+    sessionStorage.setItem('name', card.getAttribute('name'));
+    sessionStorage.setItem('email', card.getAttribute('email'));
+    window.location.href = 'editUserPage.html';
+}
 // send the request
 HTTP.send();
