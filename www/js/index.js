@@ -3,7 +3,12 @@
 // This holds the main JavaScript for the Application
 // By: Luis Castro
 //===============================================================================================
+// Global variables
 
+var user;
+var name, email, photoUrl, uid, emailVerified;
+
+// Application Functions
 var app = {
     // Application Constructor
     initialize: function() {
@@ -74,6 +79,18 @@ function login() {
     let userPswd = document.getElementById('password').value;
   
     firebase.auth().signInWithEmailAndPassword(userEmail, userPswd).then(user => {
+        // Get user information
+        user = firebase.auth().currentUser;
+
+        // Extract data from the user object
+        if (user != null) {
+            name = user.displayName;
+            email = user.email;
+            photoUrl = user.photoURL;
+            emailVerified = user.emailVerified;
+            uid = user.uid;
+        }
+        
         // Transfer to index.html upon successful login
         window.location = 'index.html';
     }).catch(error => {
@@ -86,12 +103,19 @@ function login() {
     })
   };
 
-// Function to signout of the applicaiton
+// Function to sign out of the applicaiton
 function logout() {
-    firebase.auth().signOut()
-    window.location.href = "login.html"
+    firebase.auth().signOut().then(function() {
+        // Successful logout!
+        // Transfer to login.html upon successful logout
+        window.location = 'login.html';
+      }).catch(function(error) {
+          //Logout error!
+          window.alert(error.message);
+      });
 };
 
+// Barcode scanner function utilizing the Cordova barcode scanning function.
 function scan() {
     cordova.plugins.barcodeScanner.scan(
         function(result) { // result is the JSON object that holds barcode data
