@@ -54,7 +54,7 @@ function login() {
             emailVerified = user.emailVerified;
             uid = user.uid;
         }
-        
+
         // Transfer to index.html upon successful login
         window.location = 'index.html';
     }).catch(error => {
@@ -284,13 +284,14 @@ function dialogClose() {
 
 function invPage() {
     var canvas = document.getElementById('canvas');
-    window.location.href = "index.html";
+    canvas.style = '';
 }
 
 function homePage() {
     var home = document.getElementById('canvas');
-    window.location.href = "homePage.html";
+    canvas.style = 'visibility: hidden';
 }
+
 function userPage(){
     window.location.href = "userPage.html";
 }
