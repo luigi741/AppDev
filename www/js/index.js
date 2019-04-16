@@ -32,34 +32,6 @@ var app = {
     }
 };
 
-function dialogShow() {
-    // Get form values
-    // var item = {};
-    itemsList.name = document.getElementById('listName').value;
-    itemsList.location = document.getElementById('location').value;
-
-    if (itemsList.name == '' || itemsList.location == '') {
-        alert('Please fill out list name and location');
-    }
-    // else {
-    //     var list1 = document.createElement('P');
-    //     list1.setAttribute('id', 'dName');
-    //     list1.innerHTML = item.name;
-    //
-    //     var list2 = document.createElement('P');
-    //     list2.setAttribute('id', 'dLocation');
-    //     list2.innerHTML = item.location;
-    //
-    //     document.getElementById('dialogList').appendChild(list1);
-    //     document.getElementById('dialogList').appendChild(list2);
-    //     document.getElementById('dialog-1').show();
-    //
-    //     // console.log(item);
-    //     clearForm();
-    // }
-    // clearForm();
-}
-
 // Function to login into the application
 function login() {
     let userEmail = document.getElementById('username').value;
@@ -87,26 +59,6 @@ function logout() {
 function scan() {
     cordova.plugins.barcodeScanner.scan(
         function(result) { // result is the JSON object that holds barcode data
-            // alert("We got a barcode\n" +
-            //     "Result: " + result.text + "\n" +
-            //     "Format: " + result.format + "\n" +
-            //     "Cancelled: " + result.cancelled);
-
-            // Sending UPC data to server
-            // console.log(result);
-            // var HTTP = new XMLHttpRequest();
-            // var URL = 'http://54.198.236.52:3000/upcScan';
-            // var data = JSON.stringify(result);
-            //
-            // HTTP.open('POST', URL);
-            // HTTP.setRequestHeader('Content-type', 'application/json');
-            // HTTP.onreadystatechange = function() {
-            //     if (this.readyState == 4 && this.status == 200) {
-            //         console.log(HTTP.responseText);
-            //     }
-            // };
-            // HTTP.send(data);
-
             if (result.cancelled) {
                 console.log('Scan cancelled.');
             }
