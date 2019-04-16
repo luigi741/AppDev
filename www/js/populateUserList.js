@@ -1,6 +1,6 @@
 // Create a GET request
 let HTTP = new XMLHttpRequest();
-var URL = 'http://192.168.10.105:3000/getUsers';
+var URL = 'http://54.198.236.52/getUsers';
 HTTP.open('GET', URL);
 HTTP.responseType = 'text';
 card_number = 0;
@@ -26,11 +26,11 @@ HTTP.onreadystatechange = function() {
             console.log(user);
             let keys = Object.keys(user)
             console.log(keys);
-            
+
             // Create a list item and a card that will hold the list item.
             let userElement =  document.createElement("ons-list-item")
             let card = document.createElement("div");
-            card.setAttribute('class', 'card'); 
+            card.setAttribute('class', 'card');
             card.setAttribute('id', 'card' + card_number);
             card.setAttribute('onclick', 'editUserPage(this)');
             card_number++;
@@ -59,7 +59,7 @@ HTTP.onreadystatechange = function() {
             // Finally append the card to the list.
             listElement.append(card);
         });
-        
+
 
     }
 };

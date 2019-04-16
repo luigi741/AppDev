@@ -34,7 +34,7 @@ function submit(){
     let data = JSON.stringify([{name:editName, email:editUsername},{name:nameTextBox.value, email:usernameTextBox.value}]);
     console.log(data);
     var HTTP = new XMLHttpRequest();
-    var URL = 'http://192.168.10.105:3000/editSubmit';
+    var URL = 'http://54.198.236.52/editSubmit';
     HTTP.open('POST', URL);
     HTTP.setRequestHeader('Content-type', 'application/json');
     HTTP.onreadystatechange = function() {
