@@ -287,7 +287,7 @@ function invPage() {
 }
 
 function homePage() {
-    window.location.href = 'index.html';
+    window.location.href = 'homePage.html';
     var home = document.getElementById('canvas');
     home.style = 'visibility: hidden';
 }

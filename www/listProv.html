@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src='./js/listDetail.js'></script>
+</head>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <h4 class="center" font-family="Noto Sans; sans-serif">Home</h4>
+            <div class="right">
+                <ons-toolbar-button>
+                    <ons-icon icon="ion-navicon, material:md-more-vert"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+        </ons-toolbar>
+        <div class='content' id='canvas' style=''>
+            <div>
+                <div class="card" style='height: 200px'>
+                    <p class='center'>
+                        <h3 class="center" id="listName"></h3>
+                    </p>
+                    <p class='center'>
+                        <h4 class="center" id="locationInfo"></h4>
+                    </p>
+                    <ons-row>
+                        <ons-col>
+                            <p style="margin-top: 15px;" class='center'>
+                                    <ons-button id='confirmScan' onclick='showAlert()'>
+                                    Edit
+                                    <ons-icon icon='fa-save' style='margin-left: 5px'></ons-icon>
+                                </ons-button>
+                            </p>
+                        </ons-col>
+                    </ons-row>
+                </div>
+            </div>
+            <div style="height: 200px; padding: 1px 0 0 0;">
+                <div class="card" style='height: 300px; resize: vertical; overflow: auto'>
+                    <h2 class="card__title">Items</h2>
+                    <div class="card__content">
+                        <ons-row>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center">UPC</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">Quantity</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <!---<ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center"></div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            -->
+                        </ons-row>
+                        <ons-row>
+                            <ons-col>
+                                <ul class="list" id='scanList'>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list" id='scanQuantity'>
+                                </ul>
+                            </ons-col>
+                            <!--
+                                <ons-col>
+                                <ul class='list' id='listDeleteIcon'>
+                                </ul>
+                            </ons-col>
+                            -->
+                        </ons-row>
+                    </div>
+                    <ons-row>
+                            <ons-col>
+                                <p style="margin-top: 15px;" class='center'>
+                                        <ons-button id='confirmScan' onclick='updateItemsInfo()'>
+                                        Update Items
+                                        <ons-icon icon='fa-save' style='margin-left: 5px'></ons-icon>
+                                    </ons-button>
+                                </p>
+                        </ons-col>
+                    </ons-row>
+                </div>
+            </div>
+
+            <ons-alert-dialog id="confirmAlert" modifier="rowfooter" style='hidden'>
+                <div class="alert-dialog-title">List Information</div>
+                <br>
+                <div class="alert-dialog-content">
+                    <ons-row>
+                        <p class='center'>
+                            <ons-input id="listNameEdit" modifier="underbar" placeholder="Inventory List"></ons-input>
+                        </p>
+                    </ons-row>
+                    <ons-row>
+                        <p class='center'>
+                            <ons-input id="locationEdit" modifier="underbar" placeholder="Location"></ons-input>
+                        </p>
+                    </ons-row>
+                </div>
+                <div class="alert-dialog-footer">
+                    <ons-alert-dialog-button onclick="hideAlert()">Cancel</ons-alert-dialog-button>
+                    <ons-alert-dialog-button onclick="updateListInfo()">Update</ons-alert-dialog-button>
+                </div>
+            </ons-alert-dialog>
+        </div>
+        <ons-bottom-toolbar>
+            <ons-row>
+                <ons-col class="center">
+                    <ons-toolbar-button>
+                        <ons-icon size="30px" icon="ion-home" onclick="homePage()"></ons-icon>
+                    </ons-toolbar-button>
+                </ons-col>
+                <ons-col class="center">
+                    <ons-toolbar-button onclick="invPage()">
+                        <ons-icon size="30px" icon="ion-clipboard"></ons-icon>
+                    </ons-toolbar-button>
+                </ons-col>
+                <ons-col class="center">
+                    <ons-toolbar-button>
+                        <ons-icon size="30px" icon="md-settings"></ons-icon>
+                    </ons-toolbar-button>
+                </ons-col>
+            </ons-row>
+        </ons-bottom-toolbar>
+    </ons-page>
+    <ons-alert-dialog id="dialog-1">
+        <div class="alert-dialog-title" id="dialogList">New List:</div>
+        <br>
+        <div class="alert-dialog-footer">
+            <ons-alert-dialog-button onclick='dialogClose(); clearDialog()'>OK</ons-alert-dialog-button>
+            <ons-alert-dialog-button onclick='dialogClose(); clearDialog()'>Cancel</ons-alert-dialog-button>
+        </div>
+    </ons-alert-dialog>
+</body>
+
+</html>
+
+<script src="js/index.js"></script>
