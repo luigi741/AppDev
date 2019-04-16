@@ -217,3 +217,11 @@ function query(url, options, time) {
             throw error
         })
 }
+
+function invPage() {
+    window.location.href = 'addInv.html';
+}
+
+function settingsPage() {
+    window.location.href = 'userPage.html';
+}

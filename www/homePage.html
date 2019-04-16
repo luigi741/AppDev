@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="cordova.js"></script>
     <script src="js/homeList.js"></script>
+    <script src="js/index.js"></script>
 
 </head>
 
@@ -17,9 +18,11 @@
         <ons-toolbar>
             <h4 class="center" font-family="Noto Sans; sans-serif">Your Lists</h4>
             <div class="right">
-                <ons-toolbar-button>
-                    <ons-icon icon="ion-navicon, material:md-more-vert"></ons-icon>
-                </ons-toolbar-button>
+                <div class="right">
+                    <ons-toolbar-button onclick="logout()">
+                        <i class='fas fa-sign-out-alt'></i>
+                    </ons-toolbar-button>
+                </div>
             </div>
         </ons-toolbar>
         <div class='content' id='canvas' >
@@ -48,7 +51,7 @@
                 </ons-col>
                 <ons-col class="center">
                     <ons-toolbar-button>
-                        <ons-icon size="30px" icon="md-settings"></ons-icon>
+                        <ons-icon size="30px" icon="md-settings" onclick='settingsPage()'></ons-icon>
                     </ons-toolbar-button>
                 </ons-col>
             </ons-row>

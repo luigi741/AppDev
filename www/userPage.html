@@ -13,8 +13,8 @@
         <ons-toolbar>
             <h4 class="center" font-family="Noto Sans; sans-serif">User</h4>
             <div class="right">
-                <ons-toolbar-button>
-                    <ons-icon icon="ion-navicon, material:md-more-vert"></ons-icon>
+                <ons-toolbar-button onclick="logout()">
+                    <i class='fas fa-sign-out-alt'></i>
                 </ons-toolbar-button>
             </div>
         </ons-toolbar>
@@ -43,10 +43,10 @@
                     <ons-col> I just want to graduate </ons-col>
                 </ons-row>
                 </div>
-                
+
             </div>
             <div class="card">
-                 <ons-button id="ViewUsers" class="center" onclick="userListPage()">View Users</ons-button>        
+                 <ons-button id="ViewUsers" class="center" onclick="userListPage()">View Users</ons-button>
             </div>
         </div>
         <ons-bottom-toolbar>
@@ -68,6 +68,6 @@
                     </ons-col>
             </ons-row>
         </ons-bottom-toolbar>
-        
+
     </ons-page>
 </body>

@@ -56,7 +56,7 @@ function login() {
         }
 
         // Transfer to index.html upon successful login
-        window.location = 'index.html';
+        window.location = 'homePage.html';
     }).catch(error => {
         // Catch errors here
         var errorCode = error.code;
