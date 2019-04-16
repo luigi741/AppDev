@@ -284,18 +284,18 @@ function dialogClose() {
 
 function invPage() {
     var canvas = document.getElementById('canvas');
-    canvas.style = '';
-
-    // var home = document.getElementById('homeScreen');
-    // home.style = 'visibility: hidden';
+    window.location.href = "index.html";
 }
 
 function homePage() {
     var home = document.getElementById('canvas');
-    canvas.style = 'visibility: hidden';
-
-    // var homeScreen = document.getElementById('homeScreen');
-    // homeScreen.style = '';
+    window.location.href = "homePage.html";
+}
+function userPage(){
+    window.location.href = "userPage.html";
+}
+function userListPage(){
+    window.location.href = "userListPage.html";
 }
 
 app.initialize();
