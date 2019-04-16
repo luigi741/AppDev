@@ -70,6 +70,7 @@ function hideAlert() {
 // Add item to scan list
 var listToSave = {};
 var itemsList = [];
+var insertCount = 0;
 function addItem() {
     var check = false;
     var index = -1;
@@ -188,6 +189,7 @@ function clearListObj() {
     list = {};
     listToSave = {};
     itemsList = [];
+    insertCount = 0;
 }
 
 function clearScanList() {
