@@ -1,15 +1,171 @@
 <!DOCTYPE html>
+<html>
 
-<template id="addInv.html">
-    <div style="text-align; margin-top: 20px">
-        <p>
-            <ons-input id="listName" modifier="underbar" placeholder="Inventory List"></ons-input>
-        </p>
-        <p>
-            <ons-input id="location" modifier="underbar" placeholder="Location"></ons-input>
-        </p>
-        <p style="margin-top: 30px;">
-            <ons-button ng-click="">Create List</ons-button>
-        </p>
-    </div>
-</template>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src='homePage.html'></script>
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyDb8F5_7WV8W8_UEqlhf19CtSMV1VM3IjI",
+          authDomain: "web-login-4e705.firebaseapp.com",
+          databaseURL: "https://web-login-4e705.firebaseio.com",
+          projectId: "web-login-4e705",
+          storageBucket: "web-login-4e705.appspot.com",
+          messagingSenderId: "82518434581"
+        };
+        firebase.initializeApp(config);
+      </script>
+
+</head>
+
+<body>
+
+    <ons-page>
+        <ons-toolbar>
+            <h4 class="center" font-family="Noto Sans; sans-serif">Home</h4>
+            <div class="right">
+                <ons-toolbar-button onclick="logout()">Logout</ons-toolbar-button>
+            </div>
+        </ons-toolbar>
+        <div class='content' id='canvas' style='visibility: visible'>
+            <div>
+                <div class="card" style='height: 200px'>
+                    <p class='center'>
+                        <ons-input id="listName" modifier="underbar" placeholder="List Name"></ons-input>
+                    </p>
+                    <p class='center'>
+                        <ons-input id="location" modifier="underbar" placeholder="Location"></ons-input>
+                    </p>
+                    <ons-row>
+                        <ons-col>
+                            <p style="margin-top: 15px;" class='center'>
+                                <ons-button id='newScanButton' onclick="scan()">
+                                    Scan
+                                    <ons-icon icon='fa-barcode' style='margin-left: 5px'></ons-icon>
+                                </ons-button>
+                            </p>
+                        </ons-col>
+                        <ons-col>
+                            <p style="margin-top: 15px;" class='center'>
+                                <ons-button id='newListButton' onclick="saveList()" type='submit' form='invListForm'>
+                                    Save
+                                    <ons-icon icon='fa-save' style='margin-left: 5px'></ons-icon>
+                                </ons-button>
+                            </p>
+                        </ons-col>
+                        <ons-col>
+                            <p style='margin-top: 15px' class='center'>
+                                <ons-button id='confirmScan' onclick='showAlert()'>
+                                    Add
+                                    <ons-icon icon='fa-list' style='margin-left: 5px'></ons-icon>
+                                </ons-button>
+                            </p>
+                        </ons-col>
+                    </ons-row>
+                </div>
+            </div>
+            <div style="height: 200px; padding: 1px 0 0 0;">
+                <div class="card" style='height: 300px; resize: vertical; overflow: auto'>
+                    <h2 class="card__title">Scan List</h2>
+                    <div class="card__content">
+                        <ons-row>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center">UPC</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__right list-item--nodivider__right">Quantity</div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list">
+                                    <li class="list-item list-item--nodivider">
+                                        <div class="list-item__center list-item--nodivider__center"></div>
+                                    </li>
+                                </ul>
+                            </ons-col>
+                        </ons-row>
+                        <ons-row>
+                            <ons-col>
+                                <ul class="list" id='scanList'>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class="list" id='scanQuantity'>
+                                </ul>
+                            </ons-col>
+                            <ons-col>
+                                <ul class='list' id='listDeleteIcon'>
+                                </ul>
+                            </ons-col>
+                        </ons-row>
+                    </div>
+                </div>
+            </div>
+            <ons-alert-dialog id="confirmAlert" modifier="rowfooter" style='hidden'>
+                <div class="alert-dialog-title">Confirm Scan</div>
+                <br>
+                <div class="alert-dialog-content">
+                    <ons-row>
+                        <ons-col style='width: 65%'>
+                            <input id='upcInput' type="number" class="text-input text-input--underbar" placeholder="UPC" value="" style="margin-left: 5px; width: 150px; padding: 5px" maxlength="12">
+                        </ons-col>
+                        <ons-col style='width: 35%'>
+                            <input id='qtyInput' type="number" class="text-input text-input--underbar" placeholder="QTY" value="" style='width: 50px; padding: 5px; margin-left: 5px'>
+                        </ons-col>
+                    </ons-row>
+                </div>
+                <div class="alert-dialog-footer">
+                    <ons-alert-dialog-button onclick="hideAlert()">Cancel</ons-alert-dialog-button>
+                    <ons-alert-dialog-button onclick="addItem()">Save</ons-alert-dialog-button>
+                </div>
+            </ons-alert-dialog>
+        </div>
+        <ons-bottom-toolbar>
+            <ons-row>
+                <ons-col class="center">
+                    <ons-toolbar-button>
+                        <ons-icon size="30px" icon="ion-home" onclick="homePage()"></ons-icon>
+                    </ons-toolbar-button>
+                </ons-col>
+                <ons-col class="center">
+                    <ons-toolbar-button onclick="invPage(invPageShow)">
+                        <ons-icon size="30px" icon="ion-clipboard"></ons-icon>
+                    </ons-toolbar-button>
+                </ons-col>
+                <ons-col class="center">
+                    <ons-toolbar-button onclick="userPage()">
+                        <ons-icon size="30px" icon="md-settings"></ons-icon>
+                    </ons-toolbar-button>
+                </ons-col>
+            </ons-row>
+        </ons-bottom-toolbar>
+    </ons-page>
+    <ons-alert-dialog id="dialog-1">
+        <div class="alert-dialog-title" id="dialogList">New List:</div>
+        <br>
+        <div class="alert-dialog-footer">
+            <ons-alert-dialog-button onclick='dialogClose(); clearDialog()'>OK</ons-alert-dialog-button>
+            <ons-alert-dialog-button onclick='dialogClose(); clearDialog()'>Cancel</ons-alert-dialog-button>
+        </div>
+    </ons-alert-dialog>
+</body>
+
+</html>
+
+<script src="js/index.js"></script>

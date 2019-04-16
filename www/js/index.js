@@ -283,15 +283,7 @@ function dialogClose() {
 }
 
 function invPage() {
-    window.location.href = 'index.html';
-    setTimeout(function() {
-        invPageShow();
-    }, 500);
-}
-
-function invPageShow() {
-    var inv = document.getElementById('canvas');
-    inv.style = 'visibility: visible';
+    window.location.href = 'addInv.html';
 }
 
 function homePage() {
@@ -300,10 +292,10 @@ function homePage() {
     home.style = 'visibility: hidden';
 }
 
-function userPage(){
+function userPage() {
     window.location.href = "userPage.html";
 }
-function userListPage(){
+function userListPage() {
     window.location.href = "userListPage.html";
 }
 
