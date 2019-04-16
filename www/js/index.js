@@ -32,6 +32,30 @@ var app = {
     }
 };
 
+// Function to login into the application
+function login() {
+    let userEmail = document.getElementById('username').value;
+    let userPswd = document.getElementById('password').value;
+
+    firebase.auth().signInWithEmailAndPassword(userEmail, userPswd).then(user => {
+        // Transfer to index.html upon successful login
+        window.location = 'index.html';
+    }).catch(error => {
+        // Catch errors here
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        // Prompt user with error message
+        window.alert("Error: " + errorMessage);
+    });
+};
+
+// Function to signout of the applicaiton
+function logout() {
+    firebase.auth().signOut()
+    window.location.href = "login.html"
+};
+
 function scan() {
     cordova.plugins.barcodeScanner.scan(
         function(result) { // result is the JSON object that holds barcode data
