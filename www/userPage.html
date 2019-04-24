@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="js/index.js"></script>
+
+</head>
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <h4 class="center" font-family="Noto Sans; sans-serif">User</h4>
+            <div class="right">
+                <ons-toolbar-button onclick="logout()">
+                    <i class='fas fa-sign-out-alt'></i>
+                </ons-toolbar-button>
+            </div>
+        </ons-toolbar>
+        <div class='content' id='userPageCanvas' style='visibility: visible'>
+            <div class="card">
+                    <p style="margin-top: 15px;" class='center'>
+                        <img src="img/Fireman.png" class="center">
+                    </p>
+            </div>
+            <div class="card" style='height: 200px'>
+                <div class="card">
+                    <ons-row>
+                    <ons-col width="75px">Username</ons-col>
+                    <ons-col> Luis </ons-col>
+                </ons-row>
+                </div>
+                <div class="card">
+                    <ons-row>
+                    <ons-col width="75px">Email</ons-col>
+                    <ons-col> luiscastro@mail.usf.edu.com </ons-col>
+                </ons-row>
+                </div>
+                <div class="card">
+                    <ons-row>
+                    <ons-col width="75px">Title</ons-col>
+                    <ons-col> YEET </ons-col>
+                </ons-row>
+                </div>
+
+            </div>
+            <div class="card">
+                 <ons-button id="ViewUsers" class="center" onclick="userListPage()">View Users</ons-button>
+            </div>
+        </div>
+        <ons-bottom-toolbar>
+            <ons-row>
+                    <ons-col class="center">
+                        <ons-toolbar-button>
+                            <ons-icon size="30px" icon="ion-home" onclick="homePage()"></ons-icon>
+                        </ons-toolbar-button>
+                    </ons-col>
+                    <ons-col class="center">
+                        <ons-toolbar-button onclick="invPage()">
+                            <ons-icon size="30px" icon="ion-clipboard"></ons-icon>
+                        </ons-toolbar-button>
+                    </ons-col>
+                    <ons-col class="center">
+                        <ons-toolbar-button onclick="userPage()">
+                            <ons-icon size="30px" icon="md-settings"></ons-icon>
+                        </ons-toolbar-button>
+                    </ons-col>
+            </ons-row>
+        </ons-bottom-toolbar>
+
+    </ons-page>
+</body>

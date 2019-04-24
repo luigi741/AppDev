@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="cordova.js"></script>
+    
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyDb8F5_7WV8W8_UEqlhf19CtSMV1VM3IjI",
+          authDomain: "web-login-4e705.firebaseapp.com",
+          databaseURL: "https://web-login-4e705.firebaseio.com",
+          projectId: "web-login-4e705",
+          storageBucket: "web-login-4e705.appspot.com",
+          messagingSenderId: "82518434581"
+        };
+        firebase.initializeApp(config);
+      </script>
+
+<script src="js/index.js"></script>
+</head>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <h4 class="center" font-family="Noto Sans; sans-serif">InvenZip Login</h4>
+        </ons-toolbar>
+        <div style="display: flex; justify-content: center;">
+        <img src="img/zip.png" alt="InvenZip Logo" style="width:300px;height:300px;">
+        </div>
+       
+        <div style="text-align: center; margin-top: 30px;">
+        <p>
+            <ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
+        </p>
+        &nbsp;
+        <p>
+            <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+        </p>
+        &nbsp;
+        <p>
+            <ons-button onclick="login()">Sign In</ons-button>
+        </p>
+        </div>
+    </ons-page>
+
+
+</body>
+
+</html>

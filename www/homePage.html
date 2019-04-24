@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/homeList.js"></script>
+    <script src="js/index.js"></script>
+
+</head>
+
+<body >
+    <ons-page>
+        <ons-toolbar>
+            <h4 class="center" font-family="Noto Sans; sans-serif">Your Lists</h4>
+            <div class="right">
+                <div class="right">
+                    <ons-toolbar-button onclick="logout()">
+                        <i class='fas fa-sign-out-alt'></i>
+                    </ons-toolbar-button>
+                </div>
+            </div>
+        </ons-toolbar>
+        <div class='content' id='canvas' >
+            <div>
+                <div class="card" style='height: max-content'>
+                    <ons-list  id='listNames' >
+
+                    </ons-list>
+                        <script>
+
+                        </script>
+                </div>
+            </div>
+        </div>
+        <ons-bottom-toolbar>
+            <ons-row>
+                <ons-col class="center">
+                    <ons-toolbar-button>
+                        <ons-icon size="30px" icon="ion-home" onclick="homePage()"></ons-icon>
+                    </ons-toolbar-button>
+                </ons-col>
+                <ons-col class="center">
+                    <ons-toolbar-button onclick="invPage()">
+                        <ons-icon size="30px" icon="ion-clipboard"></ons-icon>
+                    </ons-toolbar-button>
+                </ons-col>
+                <ons-col class="center">
+                    <ons-toolbar-button>
+                        <ons-icon size="30px" icon="md-settings" onclick='settingsPage()'></ons-icon>
+                    </ons-toolbar-button>
+                </ons-col>
+            </ons-row>
+        </ons-bottom-toolbar>
+    </ons-page>
+    <ons-alert-dialog id="dialog-1">
+        <div class="alert-dialog-title" id="dialogList">New List:</div>
+        <br>
+        <div class="alert-dialog-footer">
+            <ons-alert-dialog-button onclick='dialogClose(); clearDialog()'>OK</ons-alert-dialog-button>
+            <ons-alert-dialog-button onclick='dialogClose(); clearDialog()'>Cancel</ons-alert-dialog-button>
+        </div>
+    </ons-alert-dialog>
+</body>
+
+</html>
