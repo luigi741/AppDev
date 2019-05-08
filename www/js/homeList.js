@@ -1,9 +1,6 @@
 function getListNames() {
-    // Sending UPC data to server
-    //console.log(result);
     var HTTP = new XMLHttpRequest();
     var URL = 'http://54.198.236.52:3000/getListNames';
-    //var data = JSON.stringify(result);
 
     HTTP.open('GET', URL);
     HTTP.setRequestHeader('Content-type', 'application/json');
@@ -15,49 +12,49 @@ function getListNames() {
     HTTP.send({});
 }
 
-function displayListNames(users){
+function displayListNames(users) {
     var listName = document.getElementById("listNames");
     users.forEach((user, index) => {
         var listLI = document.createElement("div");
-        var content = `<ons-list-item tappable onclick='showList(${JSON.stringify(user)})' >`+
-                    `${user.name}`+
-                    //`<span class="list-item__subtitle">${user.location}</span>`+ //CAMBIO
-                    `<ons-list-item/>`
-        listLI.innerHTML = content
-        listName.appendChild(listLI)
+        var content =
+            `<li class="list-item" onclick='showList(${JSON.stringify(user)})' >`+
+                `<h3 class="list-item__center">${user.name}</h3>` +
+            `</li>`
+        listLI.innerHTML = content;
+        listName.appendChild(listLI);
     });
 }
 
-async function showList(user){
-    console.log(user)
-    await localStorage.setItem("List", JSON.stringify(user))
-    window.location.href = "listProv.html"
+async function showList(user) {
+    console.log(user);
+    await localStorage.setItem("List", JSON.stringify(user));
+    window.location.href = "listProv.html";
 }
 
-window.onload = function(){
-    getLists()
+window.onload = function() {
+    getLists();
 }
 
-async function getLists(){
+async function getLists() {
     var user="luiscastro"
     await makeQuery(user)
-    .then((lists)=>{
-        displayListNames(lists)
+    .then((lists) => {
+        displayListNames(lists);
     })
-    .catch((error)=>{
-        console.log(error)
+    .catch((error) => {
+        console.log(error);
     })
 }
 
-function makeQuery(user){
+function makeQuery(user) {
     return query(`http://54.198.236.52:3000/getListNames/${user}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
     }, 20000)
-    .then((response)=>{
-        return Promise.resolve(response)
+    .then((response) => {
+        return Promise.resolve(response);
     })
 }
 
@@ -69,7 +66,7 @@ function query(url, options, time) {
     }
     let timeout = new Promise((resolve, reject) => {
         setTimeout(() => reject(new Error('Verifica tu conexión a internet')),
-         time? time:15000);
+        time? time:15000);
     })
     return Promise.race([fetch(url, {
         headers,
@@ -77,13 +74,13 @@ function query(url, options, time) {
     }), timeout])
     .then(response => response.json())
     .then((response) => {
-        if(response){
+        if (response) {
             if (response.error) throw new Error(response.error);
         }
-        return Promise.resolve(response)
+        return Promise.resolve(response);
     })
     .catch((error) => {
-        throw error
+        throw error;
     })
 }
 
