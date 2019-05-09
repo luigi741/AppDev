@@ -47,6 +47,9 @@
         <icon height="100" src="res/icon/ios/icon-100.png" width="100" />
         <icon height="167" src="res/icon/ios/icon-167.png" width="167" />
     </platform>
+    <platform>
+        <icon src="res/icon/android/icon-72-hdpi.png" />
+    </platform>
     <engine name="ios" spec="^5.0.0" />
     <engine name="android" spec="^7.1.4" />
 </widget>
