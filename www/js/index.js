@@ -7,7 +7,7 @@
 
 var user;
 var name, email, photoUrl, uid, emailVerified;
-
+ons.disableAutoStatusBarFill();
 // Application Functions
 var app = {
     // Application Constructor
