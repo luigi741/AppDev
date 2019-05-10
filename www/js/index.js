@@ -73,10 +73,10 @@ function logout() {
         // Successful logout!
         // Transfer to login.html upon successful logout
         window.location = 'login.html';
-      }).catch(function(error) {
-          //Logout error!
-          window.alert(error.message);
-      });
+    }).catch(function(error) {
+        // Logout error!
+        window.alert(error.message);
+    });
 }
 
 // Barcode scanner function utilizing the Cordova barcode scanning function.
@@ -297,6 +297,14 @@ function userPage() {
 }
 function userListPage() {
     window.location.href = "userListPage.html";
+}
+
+function signUp() {
+    window.location.href = 'signup.html';
+}
+
+function loginScreen() {
+    window.location.href = 'login.html';
 }
 
 app.initialize();
